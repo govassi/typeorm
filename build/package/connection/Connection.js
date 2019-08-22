@@ -465,8 +465,12 @@ var Connection = /** @class */ (function () {
      */
     Connection.prototype.findMetadata = function (target) {
         return this.entityMetadatas.find(function (metadata) {
-            if (metadata.target === target)
+            if (metadata.target.name && metadata.target.name === target.name) {
                 return true;
+            }
+            if (metadata.target === target) {
+                return true;
+            }
             if (target instanceof __1.EntitySchema) {
                 return metadata.name === target.options.name;
             }
